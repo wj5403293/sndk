@@ -1,10 +1,10 @@
 #!/bin/sh
 set -eu
-SCRIPT_DIR=$(dirname "$(realpath $0)")
+SCRIPT_DIR=$(dirname "$(realpath "$0")")
+PROGRAM="$(basename "$0")"
 
 # shellcheck disable=SC2059
-msg() { printf "$(test -t 0 || cat)$@\n"; }
-err_args() { msg "Error: "; }
+msg() { printf "%s\n" "$@" >&2; }
 
 get_ndk_resource() {
 	ANDROID_NDK_HOME="$1"
@@ -64,6 +64,8 @@ main() {
 				;;
 			esac
 		done
+	else
+		printf "Usage: %s setup <ANDROID_NDK_HOME>\n" "${PROGRAM}"
 	fi
 }
 

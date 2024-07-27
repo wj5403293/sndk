@@ -4,3 +4,4 @@ resource
 sysroot
 tests/output
 a.out
+android-ndk*
